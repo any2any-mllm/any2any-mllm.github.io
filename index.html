@@ -6,363 +6,362 @@
   <title>Any-to-Any Multimodal Learning Hub</title>
   <meta name="description" content="A hub for Any-to-Any Multimodal Learning: models, benchmarks, workshops, and surveys." />
 
-  <style>
-    :root{
-      --bg0:#070A12;
-      --bg1:#0B1022;
-      --card:#0f1733cc;
-      --stroke:rgba(255,255,255,.14);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.68);
-      --muted2:rgba(255,255,255,.52);
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
-      --shadow2: 0 10px 30px rgba(0,0,0,.35);
-      --r: 22px;
-      --r2: 18px;
-    }
+ <style>
+  :root{
+    /* Light theme palette */
+    --bg0:#f7f8ff;
+    --bg1:#eef2ff;
+    --card: rgba(255,255,255,.88);
+    --stroke: rgba(15,23,42,.10);
+    --text: rgba(15,23,42,.92);
+    --muted: rgba(15,23,42,.68);
+    --muted2: rgba(15,23,42,.52);
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text);
-      background:
-        radial-gradient(900px 600px at 15% 10%, rgba(120,80,255,.35), transparent 60%),
-        radial-gradient(900px 700px at 85% 15%, rgba(0,210,255,.25), transparent 55%),
-        radial-gradient(1100px 800px at 55% 95%, rgba(255,90,140,.22), transparent 55%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-    }
+    --shadow: 0 18px 60px rgba(15,23,42,.10);
+    --shadow2: 0 10px 30px rgba(15,23,42,.08);
 
-    a{ color:inherit; text-decoration:none; }
+    --r: 22px;
+    --r2: 18px;
 
-    .wrap{
-      width:min(1140px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 34px 0 80px;
-    }
+    /* accents */
+    --a1: #6d5efc;   /* purple */
+    --a2: #18b6ff;   /* cyan */
+    --a3: #ff6aa3;   /* pink */
+  }
 
-    /* Top hero */
-    .hero{
-      position:relative;
-      border-radius: calc(var(--r) + 8px);
-      padding: 28px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
-        radial-gradient(1000px 700px at 20% 0%, rgba(120,80,255,.25), transparent 55%),
-        radial-gradient(900px 600px at 85% 20%, rgba(0,210,255,.18), transparent 60%);
-      border:1px solid var(--stroke);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    color:var(--text);
+    background:
+      radial-gradient(900px 600px at 12% 10%, rgba(109,94,252,.18), transparent 62%),
+      radial-gradient(900px 700px at 86% 14%, rgba(24,182,255,.14), transparent 60%),
+      radial-gradient(1100px 800px at 55% 96%, rgba(255,106,163,.14), transparent 62%),
+      linear-gradient(180deg, var(--bg0), var(--bg1));
+    overflow-x:hidden;
+  }
 
-    .hero::after{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(1200px 700px at 30% 20%, rgba(255,255,255,.10), transparent 50%),
-        radial-gradient(800px 600px at 70% 80%, rgba(255,255,255,.08), transparent 55%);
-      pointer-events:none;
-    }
+  a{ color:inherit; text-decoration:none; }
 
-    .hero-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:18px;
-      position:relative;
-      z-index:1;
-    }
+  .wrap{
+    width:min(1140px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 34px 0 80px;
+  }
 
-    .brand{
-      display:flex; align-items:center; gap:12px;
-    }
-    .logo{
-      width:38px; height:38px;
-      border-radius: 14px;
-      background:
-        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.85), rgba(255,255,255,.0) 60%),
-        linear-gradient(135deg, rgba(120,80,255,1), rgba(0,210,255,1));
-      box-shadow: 0 10px 26px rgba(0,210,255,.18);
-      border: 1px solid rgba(255,255,255,.22);
-    }
-    .brand h1{
-      margin:0;
-      font-size: clamp(18px, 2.1vw, 22px);
-      letter-spacing:.2px;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow: var(--shadow2);
-      color:var(--muted);
-      font-size: 12px;
-      white-space:nowrap;
-    }
-    .dot{
-      width:8px; height:8px; border-radius:99px;
-      background: linear-gradient(180deg, rgba(0,255,200,1), rgba(0,210,255,1));
-      box-shadow: 0 0 18px rgba(0,210,255,.7);
-    }
+  /* remove dark noise layer for light theme (optional) */
+  body::before{ display:none; }
 
-    .hero-main{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 22px;
-      margin-top: 18px;
-      position:relative;
-      z-index:1;
-      align-items:stretch;
-    }
+  /* HERO */
+  .hero{
+    position:relative;
+    border-radius: calc(var(--r) + 8px);
+    padding: 28px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65)),
+      radial-gradient(1000px 700px at 18% 0%, rgba(109,94,252,.14), transparent 58%),
+      radial-gradient(900px 600px at 88% 20%, rgba(24,182,255,.12), transparent 62%);
+    border:1px solid var(--stroke);
+    box-shadow: var(--shadow);
+    overflow:hidden;
+  }
 
-    .hero-copy{
-      padding: 10px 8px 2px;
-    }
-    .hero-copy h2{
-      margin:0 0 10px 0;
-      font-size: clamp(26px, 3.3vw, 40px);
-      line-height: 1.06;
-      letter-spacing: -0.6px;
-    }
-    .hero-copy p{
-      margin:0 0 14px 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.65;
-    }
+  .hero::after{
+    content:"";
+    position:absolute; inset:-2px;
+    background:
+      radial-gradient(1200px 700px at 30% 20%, rgba(255,255,255,.70), transparent 55%),
+      radial-gradient(800px 600px at 70% 85%, rgba(255,255,255,.65), transparent 60%);
+    pointer-events:none;
+  }
 
-    .pill-row{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top: 12px;
-    }
-    .pill{
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.14);
-      color: rgba(255,255,255,.78);
-      font-size: 12px;
-      backdrop-filter: blur(10px);
-    }
+  .hero-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:18px;
+    position:relative;
+    z-index:1;
+  }
 
-    .hero-figure{
-      border-radius: var(--r);
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(15,23,51,.35);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      min-height: 260px;
-    }
-    .figure-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255,255,255,.10);
-      color: var(--muted2);
-      font-size: 12px;
-    }
-    .figure-head .mini{
-      display:flex; gap:6px; align-items:center;
-    }
-    .mini span{
-      width:10px; height:10px; border-radius:99px; display:inline-block;
-      background: rgba(255,255,255,.14);
-      border:1px solid rgba(255,255,255,.16);
-    }
-    .mini span:nth-child(1){ background: rgba(255,90,140,.35); }
-    .mini span:nth-child(2){ background: rgba(255,210,0,.30); }
-    .mini span:nth-child(3){ background: rgba(0,255,200,.28); }
+  .brand{ display:flex; align-items:center; gap:12px; }
 
-    .figure-body{
-      position:relative;
-      flex:1;
-      display:grid;
-      place-items:center;
-      padding: 10px;
-    }
-    .figure-body img{
-      width:100%;
-      height:100%;
-      max-height: 360px;
-      object-fit: contain;
-      display:block;
-      border-radius: 16px;
-    }
+  .logo{
+    width:38px; height:38px;
+    border-radius: 14px;
+    background:
+      radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,.0) 60%),
+      linear-gradient(135deg, var(--a1), var(--a2));
+    box-shadow: 0 10px 26px rgba(24,182,255,.18);
+    border: 1px solid rgba(15,23,42,.10);
+  }
 
-    /* You can replace this placeholder with your provided intro figure */
-    .placeholder{
-      width:100%;
-      height:100%;
-      min-height: 210px;
-      border-radius: 16px;
-      border:1px dashed rgba(255,255,255,.22);
-      background:
-        radial-gradient(600px 260px at 20% 10%, rgba(120,80,255,.18), transparent 55%),
-        radial-gradient(520px 260px at 85% 35%, rgba(0,210,255,.16), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color: rgba(255,255,255,.55);
-      text-align:center;
-      padding: 16px;
-      line-height:1.4;
-      font-size: 13px;
-    }
+  .brand h1{
+    margin:0;
+    font-size: clamp(18px, 2.1vw, 22px);
+    letter-spacing:.2px;
+  }
 
-    /* Section blocks */
-    .section{
-      margin-top: 26px;
-      border-radius: calc(var(--r) + 6px);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.70);
+    border:1px solid rgba(15,23,42,.10);
+    box-shadow: var(--shadow2);
+    color:var(--muted);
+    font-size: 12px;
+    white-space:nowrap;
+  }
+  .dot{
+    width:8px; height:8px; border-radius:99px;
+    background: linear-gradient(180deg, rgba(0,210,255,1), rgba(109,94,252,1));
+    box-shadow: 0 0 14px rgba(24,182,255,.35);
+  }
 
-    .section-head{
-      padding: 18px 20px 14px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 10px;
-      border-bottom: 1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(900px 240px at 20% 0%, rgba(120,80,255,.16), transparent 55%),
-        radial-gradient(900px 240px at 85% 40%, rgba(0,210,255,.14), transparent 60%);
-    }
-    .section-head h3{
-      margin:0;
-      font-size: 20px;
-      letter-spacing: .2px;
-    }
-    .section-head p{
-      margin:0;
-      color: var(--muted2);
-      font-size: 13px;
-    }
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      color: rgba(255,255,255,.72);
-      font-size: 12px;
-      white-space:nowrap;
-    }
-    .spark{
-      width:10px; height:10px; border-radius: 99px;
-      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.1));
-      opacity:.8;
-      box-shadow: 0 0 16px rgba(255,255,255,.25);
-    }
+  .hero-main{
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 22px;
+    margin-top: 18px;
+    position:relative;
+    z-index:1;
+    align-items:stretch;
+  }
 
-    /* Projects grid: 2 per row */
-    .grid{
-      padding: 18px;
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 16px;
-    }
+  .hero-copy{ padding: 10px 8px 2px; }
+  .hero-copy h2{
+    margin:0 0 10px 0;
+    font-size: clamp(26px, 3.3vw, 40px);
+    line-height: 1.06;
+    letter-spacing: -0.6px;
+  }
+  .hero-copy p{
+    margin:0 0 14px 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.65;
+  }
 
-    .project{
-      position:relative;
-      border-radius: var(--r2);
-      border: 1px solid rgba(255,255,255,.14);
-      background:
-        radial-gradient(700px 260px at 15% 0%, rgba(120,80,255,.12), transparent 55%),
-        radial-gradient(650px 260px at 90% 45%, rgba(0,210,255,.10), transparent 60%),
-        rgba(15,23,51,.42);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 10px 28px rgba(0,0,0,.30);
-      overflow:hidden;
-      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-    }
-    .project:hover{
-      transform: translateY(-4px);
-      border-color: rgba(255,255,255,.24);
-      box-shadow: 0 18px 42px rgba(0,0,0,.40);
-    }
+  .pill-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
+  .pill{
+    padding: 9px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.70);
+    border: 1px solid rgba(15,23,42,.10);
+    color: rgba(15,23,42,.75);
+    font-size: 12px;
+    backdrop-filter: blur(10px);
+  }
 
-    .project .thumb{
-      height: 168px;
-      border-bottom: 1px solid rgba(255,255,255,.10);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 10px;
-    }
-    .project .thumb img{
-      width:100%;
-      height:100%;
-      object-fit: contain;
-      border-radius: 14px;
-      display:block;
-      background: rgba(0,0,0,.12);
-      border: 1px solid rgba(255,255,255,.10);
-    }
-    .project .thumb .thumb-placeholder{
-      width:100%;
-      height:100%;
-      border-radius: 14px;
-      border: 1px dashed rgba(255,255,255,.22);
-      display:grid;
-      place-items:center;
-      color: rgba(255,255,255,.55);
-      font-size: 13px;
-      text-align:center;
-      padding: 12px;
-      background:
-        radial-gradient(520px 220px at 30% 20%, rgba(255,90,140,.10), transparent 60%),
-        radial-gradient(520px 220px at 75% 55%, rgba(0,210,255,.10), transparent 60%);
-    }
+  .hero-figure{
+    border-radius: var(--r);
+    border:1px solid rgba(15,23,42,.10);
+    background: rgba(255,255,255,.70);
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow2);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    min-height: 260px;
+  }
+  .figure-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(15,23,42,.08);
+    color: var(--muted2);
+    font-size: 12px;
+  }
+  .figure-head .mini{ display:flex; gap:6px; align-items:center; }
+  .mini span{
+    width:10px; height:10px; border-radius:99px; display:inline-block;
+    background: rgba(15,23,42,.08);
+    border:1px solid rgba(15,23,42,.08);
+  }
+  .mini span:nth-child(1){ background: rgba(255,106,163,.35); }
+  .mini span:nth-child(2){ background: rgba(255,210,0,.30); }
+  .mini span:nth-child(3){ background: rgba(24,182,255,.30); }
 
-    .project .meta{
-      padding: 14px 14px 14px;
-    }
-    .project .name{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-    .project .name h4{
-      margin:0;
-      font-size: 16px;
-      letter-spacing: .2px;
-    }
-    .project .pill2{
-      font-size: 11px;
-      color: rgba(255,255,255,.72);
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      padding: 6px 10px;
-      border-radius: 999px;
-      white-space:nowrap;
-    }
-    .project p{
-      margin:0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-  </style>
+  .figure-body{
+    position:relative;
+    flex:1;
+    display:grid;
+    place-items:center;
+    padding: 12px;
+    background:
+      radial-gradient(700px 360px at 20% 10%, rgba(109,94,252,.08), transparent 60%),
+      radial-gradient(700px 360px at 85% 40%, rgba(24,182,255,.06), transparent 60%);
+  }
+
+  /* ✅ 让白底 intro 图更好看：加边框+阴影+圆角 */
+  .figure-body img{
+    width:100%;
+    height:auto;
+    max-height: 360px;
+    object-fit: contain;
+    display:block;
+    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid rgba(15,23,42,.08);
+    box-shadow: 0 14px 40px rgba(15,23,42,.10);
+    padding: 10px; /* 如果你想让图和边框有点留白 */
+  }
+
+  /* SECTION */
+  .section{
+    margin-top: 26px;
+    border-radius: calc(var(--r) + 6px);
+    background: rgba(255,255,255,.72);
+    border: 1px solid rgba(15,23,42,.10);
+    box-shadow: var(--shadow2);
+    overflow:hidden;
+  }
+
+  .section-head{
+    padding: 18px 20px 14px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap: 10px;
+    border-bottom: 1px solid rgba(15,23,42,.08);
+    background:
+      radial-gradient(900px 240px at 20% 0%, rgba(109,94,252,.10), transparent 60%),
+      radial-gradient(900px 240px at 85% 40%, rgba(24,182,255,.08), transparent 65%),
+      linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65));
+  }
+
+  .section-head h3{ margin:0; font-size: 20px; letter-spacing: .2px; }
+  .section-head p{ margin:0; color: var(--muted2); font-size: 13px; }
+
+  .tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.70);
+    border:1px solid rgba(15,23,42,.10);
+    color: rgba(15,23,42,.66);
+    font-size: 12px;
+    white-space:nowrap;
+  }
+
+  .spark{
+    width:10px; height:10px; border-radius: 99px;
+    background: linear-gradient(180deg, rgba(109,94,252,.9), rgba(24,182,255,.4));
+    opacity:.85;
+    box-shadow: 0 0 12px rgba(24,182,255,.25);
+  }
+
+  /* Projects grid: 2 per row */
+  .grid{
+    padding: 18px;
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 16px;
+  }
+
+  .project{
+    position:relative;
+    border-radius: var(--r2);
+    border: 1px solid rgba(15,23,42,.10);
+    background:
+      radial-gradient(700px 260px at 15% 0%, rgba(109,94,252,.08), transparent 60%),
+      radial-gradient(650px 260px at 90% 45%, rgba(24,182,255,.06), transparent 62%),
+      rgba(255,255,255,.78);
+    box-shadow: 0 10px 26px rgba(15,23,42,.08);
+    overflow:hidden;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+  .project:hover{
+    transform: translateY(-4px);
+    border-color: rgba(15,23,42,.16);
+    box-shadow: 0 18px 44px rgba(15,23,42,.12);
+  }
+
+  .project .thumb{
+    height: 168px;
+    border-bottom: 1px solid rgba(15,23,42,.08);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.70));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 10px;
+  }
+  .project .thumb img{
+    width:100%;
+    height:100%;
+    object-fit: contain;
+    border-radius: 14px;
+    display:block;
+    background: #fff;
+    border: 1px solid rgba(15,23,42,.08);
+    box-shadow: 0 10px 26px rgba(15,23,42,.08);
+    padding: 8px;
+  }
+
+  .project .thumb .thumb-placeholder{
+    width:100%;
+    height:100%;
+    border-radius: 14px;
+    border: 1px dashed rgba(15,23,42,.18);
+    display:grid;
+    place-items:center;
+    color: rgba(15,23,42,.55);
+    font-size: 13px;
+    text-align:center;
+    padding: 12px;
+    background:
+      radial-gradient(520px 220px at 30% 20%, rgba(255,106,163,.10), transparent 65%),
+      radial-gradient(520px 220px at 75% 55%, rgba(24,182,255,.10), transparent 65%),
+      rgba(255,255,255,.65);
+  }
+
+  .project .meta{ padding: 14px 14px 14px; }
+  .project .name{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .project .name h4{
+    margin:0;
+    font-size: 16px;
+    letter-spacing: .2px;
+  }
+  .project .pill2{
+    font-size: 11px;
+    color: rgba(15,23,42,.70);
+    background: rgba(255,255,255,.75);
+    border: 1px solid rgba(15,23,42,.10);
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space:nowrap;
+  }
+  .project p{
+    margin:0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 920px){
+    .hero-main{ grid-template-columns: 1fr; }
+    .hero-figure{ min-height: 240px; }
+  }
+  @media (max-width: 760px){
+    .grid{ grid-template-columns: 1fr; }
+    .section-head{ align-items:flex-start; flex-direction:column; }
+  }
+</style>
 </head>
 
 <body>
