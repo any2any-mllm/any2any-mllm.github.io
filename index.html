@@ -315,6 +315,13 @@
       font-size: 16px;
       letter-spacing: .2px;
     }
+    .project .name h4 .oral-note{
+      color: #c1121f;
+      font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+      font-size: 0.9em;
+      white-space: nowrap;
+    }
     .project .pill2{
       font-size: 11px;
       color: rgba(15,23,42,.70);
@@ -329,6 +336,14 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.55;
+    }
+    .project.project-link{
+      display:block;
+      cursor:pointer;
+    }
+    .project.project-link:focus-visible{
+      outline: 2px solid #175cd3;
+      outline-offset: 2px;
     }
 
     @media (max-width: 920px){
@@ -390,18 +405,18 @@
       </div>
 
       <div class="grid">
-        <article class="project">
+        <a class="project project-link" href="https://next-gpt.github.io/" aria-label="NExT-GPT homepage">
           <div class="thumb">
             <img src="assets/models/nextgpt.png" alt="Next-GPT architecture" />
           </div>
           <div class="meta">
             <div class="name">
-              <h4>NExT-GPT</h4>
+              <h4>NExT-GPT <span class="oral-note">(ICML 2024 Oral)</span></h4>
               <span class="pill2">Model</span>
             </div>
-            <p>Short description goes here (you can replace). Supports unified multimodal inputs/outputs under a single framework.</p>
+            <p>An any-to-any multimodal model for unified understanding and generation across text, image, video, and audio. It supports interleaved multimodal instructions, cross-modal reasoning, and controllable multi-signal outputs within one framework.</p>
           </div>
-        </article>
+        </a>
 
         <article class="project">
           <div class="thumb">
