@@ -288,7 +288,7 @@
       margin: 0;
       color: var(--muted);
       font-size: 17px;
-      line-height: 1.9;
+      line-height: 1.4;
       text-align: justify;
       text-justify: inter-word;
     }
@@ -678,6 +678,81 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.65;
+    }
+
+    .awesome-shell {
+      min-height: 270px;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px dashed rgba(22, 32, 51, 0.18);
+      background:
+        radial-gradient(circle at 20% 18%, rgba(213, 157, 61, 0.16), transparent 32%),
+        radial-gradient(circle at 80% 24%, rgba(27, 143, 137, 0.16), transparent 30%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(250, 244, 236, 0.82));
+    }
+
+    .awesome-shell-inner {
+      width: min(100%, 440px);
+      display: grid;
+      gap: 14px;
+      padding: 26px 24px;
+      border-radius: 22px;
+      text-align: center;
+      background: rgba(255, 252, 247, 0.9);
+      border: 1px solid rgba(22, 32, 51, 0.1);
+      box-shadow: 0 18px 40px rgba(17, 24, 39, 0.08);
+    }
+
+    .awesome-shell-inner strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .awesome-shell-inner p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .awesome-mini-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin: 0 auto;
+      min-height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(33, 58, 99, 0.08);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .awesome-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .awesome-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(27, 143, 137, 0.08);
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 700;
     }
 
     .footer {
@@ -1070,6 +1145,48 @@
             </div>
             <div class="card-actions">
               <span>Link will be added when available</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="paper-card model-card">
+          <div class="paper-media">
+            <div class="awesome-shell">
+              <div class="awesome-shell-inner">
+                <span class="awesome-mini-tag">Community curated</span>
+                <strong>Awesome Any2Any</strong>
+                <p>
+                  A living repository that organizes the broader any-to-any landscape, including
+                  datasets, paper collections, workshops, surveys, tools, and ongoing community updates.
+                </p>
+                <div class="awesome-chip-row">
+                  <span class="awesome-chip">Datasets</span>
+                  <span class="awesome-chip">Papers</span>
+                  <span class="awesome-chip">Surveys</span>
+                  <span class="awesome-chip">Tools</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="paper-body">
+            <div class="paper-topline">
+              <span class="paper-type">Community resource</span>
+              <span class="paper-status">GitHub repository</span>
+            </div>
+            <h3>Awesome Any2Any <span>Curated resources for the A2A-MI landscape</span></h3>
+            <p>
+              This repository systematizes <strong>Any-to-Any Generation</strong> and adjacent A2A-MI
+              research through a continuously maintained collection of resources:
+              <strong>news</strong>, <strong>datasets</strong>, <strong>paper lists</strong>, and
+              <strong>tools</strong>.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Paper collections</span>
+              <span class="tag">Datasets and tools</span>
+              <span class="tag">Community updates</span>
+            </div>
+            <div class="card-actions">
+              <a class="primary-link" href="https://github.com/any2any-mllm/awesome-any2any" target="_blank" rel="noreferrer">GitHub repo</a>
             </div>
           </div>
         </article>
