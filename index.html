@@ -2,521 +2,1092 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Any-to-Any Multimodal Learning Hub</title>
-  <meta name="description" content="A hub for Any-to-Any Multimodal Learning: models, benchmarks, workshops, and surveys." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Any-to-Any Multimodal Intelligence | A2A-MI</title>
+  <meta
+    name="description"
+    content="A research hub for Any-to-Any Multimodal Intelligence (A2A-MI), covering standalone papers, benchmarks, workshops, and upcoming surveys."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Cormorant+Garamond:wght@500;600;700&amp;display=swap"
+    rel="stylesheet"
+  />
 
   <style>
-    :root{
-      /* Light theme palette */
-      --bg0:#f7f8ff;
-      --bg1:#eef2ff;
-      --card: rgba(255,255,255,.88);
-      --stroke: rgba(15,23,42,.10);
-      --text: rgba(15,23,42,.92);
-      --muted: rgba(15,23,42,.68);
-      --muted2: rgba(15,23,42,.52);
-
-      --shadow: 0 18px 60px rgba(15,23,42,.10);
-      --shadow2: 0 10px 30px rgba(15,23,42,.08);
-
-      --r: 22px;
-      --r2: 18px;
-
-      /* accents */
-      --a1: #6d5efc;   /* purple */
-      --a2: #18b6ff;   /* cyan */
-      --a3: #ff6aa3;   /* pink */
+    :root {
+      --bg: #f5f0e8;
+      --bg-soft: #fbf8f2;
+      --surface: rgba(255, 252, 246, 0.8);
+      --surface-strong: rgba(255, 252, 246, 0.94);
+      --surface-dark: #1d2940;
+      --line: rgba(26, 36, 52, 0.12);
+      --line-strong: rgba(26, 36, 52, 0.2);
+      --text: #162033;
+      --muted: rgba(22, 32, 51, 0.76);
+      --muted-soft: rgba(22, 32, 51, 0.58);
+      --navy: #213a63;
+      --teal: #1b8f89;
+      --gold: #d59d3d;
+      --coral: #d5674f;
+      --glow: rgba(27, 143, 137, 0.18);
+      --shadow-xl: 0 28px 70px rgba(17, 24, 39, 0.12);
+      --shadow-lg: 0 16px 42px rgba(17, 24, 39, 0.1);
+      --shadow-sm: 0 10px 24px rgba(17, 24, 39, 0.08);
+      --radius-xl: 30px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --maxw: 1200px;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: 'Times New Roman', Times, serif, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text);
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Manrope", "Segoe UI", sans-serif;
       background:
-        radial-gradient(900px 600px at 12% 10%, rgba(109,94,252,.18), transparent 62%),
-        radial-gradient(900px 700px at 86% 14%, rgba(24,182,255,.14), transparent 60%),
-        radial-gradient(1100px 800px at 55% 96%, rgba(255,106,163,.14), transparent 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
+        radial-gradient(circle at 10% 0%, rgba(213, 157, 61, 0.12), transparent 30%),
+        radial-gradient(circle at 88% 14%, rgba(27, 143, 137, 0.12), transparent 28%),
+        radial-gradient(circle at 58% 88%, rgba(33, 58, 99, 0.08), transparent 26%),
+        linear-gradient(180deg, #f3ede3 0%, #f8f4ee 32%, #f7f1e8 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    a{ color:inherit; text-decoration:none; }
-
-    .wrap{
-      width:min(1140px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 34px 0 80px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25), transparent 85%);
+      opacity: 0.3;
     }
 
-    body::before{ display:none; }
-
-    /* HERO */
-    .hero{
-      position:relative;
-      border-radius: calc(var(--r) + 8px);
-      padding: 28px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65)),
-        radial-gradient(1000px 700px at 18% 0%, rgba(109,94,252,.14), transparent 58%),
-        radial-gradient(900px 600px at 88% 20%, rgba(24,182,255,.12), transparent 62%);
-      border:1px solid var(--stroke);
-      box-shadow: var(--shadow);
-      overflow:hidden;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .hero::after{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(1200px 700px at 30% 20%, rgba(255,255,255,.70), transparent 55%),
-        radial-gradient(800px 600px at 70% 85%, rgba(255,255,255,.65), transparent 60%);
-      pointer-events:none;
-    }
-
-    .hero-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:18px;
-      position:relative;
-      z-index:1;
-    }
-
-    .brand{ display:flex; align-items:center; gap:12px; }
-
-    .logo{
-      width:38px; height:38px;
-      border-radius: 14px;
-      background:
-        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,.0) 60%),
-        linear-gradient(135deg, var(--a1), var(--a2));
-      box-shadow: 0 10px 26px rgba(24,182,255,.18);
-      border: 1px solid rgba(15,23,42,.10);
-    }
-
-    .brand h1{
-      margin:0;
-      font-size: clamp(18px, 2.1vw, 22px);
-      letter-spacing:.2px;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.70);
-      border:1px solid rgba(15,23,42,.10);
-      box-shadow: var(--shadow2);
-      color:var(--muted);
-      font-size: 12px;
-      white-space:nowrap;
-    }
-    .dot{
-      width:8px; height:8px; border-radius:99px;
-      background: linear-gradient(180deg, rgba(0,210,255,1), rgba(109,94,252,1));
-      box-shadow: 0 0 14px rgba(24,182,255,.35);
-    }
-
-    .hero-main{
-      display:grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 22px;
-      margin-top: 18px;
-      position:relative;
-      z-index:1;
-      align-items:stretch;
-    }
-
-    .hero-copy{ padding: 10px 8px 2px; }
-    .hero-copy p{
-      margin:0 0 14px 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.65;
-    }
-    .intro-img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    img {
+      max-width: 100%;
       display: block;
-      background: #ffffff;
-      border: 1px solid rgba(15,23,42,.08);
-      box-shadow: 0 14px 40px rgba(15,23,42,.10);
-      padding: 2px;
     }
-    .pill-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
-    .pill{
-      padding: 9px 12px;
+
+    .page {
+      width: min(var(--maxw), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 72px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 16px;
+      z-index: 20;
+      margin-bottom: 22px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.56);
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(255, 251, 244, 0.9), rgba(248, 241, 230, 0.82)),
+        radial-gradient(circle at 16% 50%, rgba(213, 157, 61, 0.12), transparent 30%),
+        radial-gradient(circle at 86% 40%, rgba(27, 143, 137, 0.1), transparent 26%);
+      color: var(--text);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 42px rgba(17, 24, 39, 0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      flex: 0 0 auto;
+      background:
+        radial-gradient(circle at 28% 30%, rgba(255, 255, 255, 0.92), transparent 28%),
+        linear-gradient(135deg, var(--gold), var(--teal) 55%, var(--navy));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        0 10px 25px rgba(0, 0, 0, 0.22);
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-copy span {
+      display: block;
+      color: var(--muted-soft);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,.70);
-      border: 1px solid rgba(15,23,42,.10);
-      color: rgba(15,23,42,.75);
-      font-size: 12px;
-      backdrop-filter: blur(10px);
+      color: rgba(22, 32, 51, 0.8);
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
 
-    .hero-figure{
-      border-radius: var(--r);
-      border:1px solid rgba(15,23,42,.10);
-      background: rgba(255,255,255,.70);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      min-height: 360px;
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.5);
+      color: var(--navy);
+      transform: translateY(-1px);
     }
-    .figure-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(15,23,42,.08);
-      color: var(--muted2);
-      font-size: 12px;
-    }
-    .figure-head .mini{ display:flex; gap:6px; align-items:center; }
-    .mini span{
-      width:10px; height:10px; border-radius:99px; display:inline-block;
-      background: rgba(15,23,42,.08);
-      border:1px solid rgba(15,23,42,.08);
-    }
-    .mini span:nth-child(1){ background: rgba(255,106,163,.35); }
-    .mini span:nth-child(2){ background: rgba(255,210,0,.30); }
-    .mini span:nth-child(3){ background: rgba(24,182,255,.30); }
 
-    .figure-body{
-      position:relative;
-      flex:1;
-      display:grid;
-      place-items:center;
-      padding: 12px;
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f0b657, #d77752);
+      color: #1c2432;
+      box-shadow: 0 12px 24px rgba(213, 157, 61, 0.22);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: calc(var(--radius-xl) + 4px);
+      padding: 38px;
       background:
-        radial-gradient(700px 360px at 20% 10%, rgba(109,94,252,.08), transparent 60%),
-        radial-gradient(700px 360px at 85% 40%, rgba(24,182,255,.06), transparent 60%);
+        linear-gradient(135deg, rgba(255, 251, 244, 0.96), rgba(247, 240, 230, 0.94)),
+        radial-gradient(circle at 12% 18%, rgba(213, 157, 61, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 14%, rgba(27, 143, 137, 0.16), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(33, 58, 99, 0.08), transparent 32%);
+      border: 1px solid rgba(255, 255, 255, 0.56);
+      color: var(--text);
+      box-shadow: var(--shadow-xl);
+      isolation: isolate;
     }
 
-    .figure-body img{
-      width:100%;
-      height:100%;
-      object-fit: contain;
-      display:block;
-      border-radius: 16px;
-      background: #ffffff;
-      border: 1px solid rgba(15,23,42,.08);
-      box-shadow: 0 14px 40px rgba(15,23,42,.10);
-      padding: 2px;
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(8px);
+      pointer-events: none;
     }
 
-    /* SECTION */
-    .section{
-      margin-top: 26px;
-      border-radius: calc(var(--r) + 6px);
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(15,23,42,.10);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
+    .hero::before {
+      width: 420px;
+      height: 420px;
+      top: -140px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(27, 143, 137, 0.16), transparent 68%);
     }
 
-    .section-head{
-      padding: 18px 20px 14px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 10px;
-      border-bottom: 1px solid rgba(15,23,42,.08);
-      background:
-        radial-gradient(900px 240px at 20% 0%, rgba(109,94,252,.10), transparent 60%),
-        radial-gradient(900px 240px at 85% 40%, rgba(24,182,255,.08), transparent 65%),
-        linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65));
+    .hero::after {
+      width: 360px;
+      height: 360px;
+      left: -140px;
+      bottom: -170px;
+      background: radial-gradient(circle, rgba(213, 157, 61, 0.14), transparent 68%);
     }
 
-    .section-head h3{ margin:0; font-size: 20px; letter-spacing: .2px; }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 0.96fr) minmax(420px, 1.04fr);
+      gap: 34px;
+      align-items: center;
+      margin-top: 24px;
+    }
 
-    /* Projects grid: 2 per row */
-    .grid{
-      padding: 18px;
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hero-titleline {
+      display: flex;
+      align-items: baseline;
+      gap: 0.16em;
+      white-space: nowrap;
+      font-size: clamp(20px, 4vw, 44px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-acronym {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.38em;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .hero-divider {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.08em;
+      color: rgba(22, 32, 51, 0.48);
+    }
+
+    .hero-fullname {
+      font-size: 1.1em;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      color: var(--teal);
+    }
+
+    .hero-description {
+      display: grid;
       gap: 16px;
     }
 
-    .project{
-      position:relative;
-      border-radius: var(--r2);
-      border: 1px solid rgba(15,23,42,.10);
-      background:
-        radial-gradient(700px 260px at 15% 0%, rgba(109,94,252,.08), transparent 60%),
-        radial-gradient(650px 260px at 90% 45%, rgba(24,182,255,.06), transparent 62%),
-        rgba(255,255,255,.78);
-      box-shadow: 0 10px 26px rgba(15,23,42,.08);
-      overflow:hidden;
-      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-    }
-    .project:hover{
-      transform: translateY(-4px);
-      border-color: rgba(15,23,42,.16);
-      box-shadow: 0 18px 44px rgba(15,23,42,.12);
+    .hero-description p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.9;
+      text-align: justify;
+      text-justify: inter-word;
     }
 
-    .project .thumb{
-      height: 268px;
-      border-bottom: 1px solid rgba(15,23,42,.08);
-      background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.70));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 10px;
+    .hero-description strong {
+      color: var(--text);
     }
-    .project .thumb img{
-      width:100%;
-      height:100%;
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-visual {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .visual-frame {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      background: rgba(255, 252, 246, 0.62);
+      box-shadow: 0 18px 34px rgba(17, 24, 39, 0.08);
+      overflow: hidden;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(213, 157, 61, 0.16), transparent 32%),
+        radial-gradient(circle at 80% 10%, rgba(27, 143, 137, 0.18), transparent 32%),
+        rgba(255, 255, 255, 0.3);
+    }
+
+    .visual-frame img {
+      width: 100%;
+      min-height: 430px;
       object-fit: contain;
-      border-radius: 14px;
-      display:block;
+      border-radius: 18px;
+      border: 1px solid rgba(22, 32, 51, 0.08);
       background: #fff;
-      border: 1px solid rgba(15,23,42,.08);
-      box-shadow: 0 10px 26px rgba(15,23,42,.08);
-      padding: 8px;
+      padding: 4px;
+      box-shadow: var(--shadow-sm);
     }
 
-    .project .thumb .thumb-placeholder{
-      width:100%;
-      height:100%;
-      border-radius: 14px;
-      border: 1px dashed rgba(15,23,42,.18);
-      display:grid;
-      place-items:center;
-      color: rgba(15,23,42,.55);
+    .section-block {
+      margin-top: 26px;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker::before {
+      content: "";
+      width: 20px;
+      height: 1px;
+      background: rgba(27, 143, 137, 0.5);
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(34px, 4vw, 50px);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .section-deck {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .connection-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .connection-card {
+      position: relative;
+      min-height: 220px;
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .connection-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -40% auto;
+      width: 140px;
+      height: 140px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(27, 143, 137, 0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .connection-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      margin-bottom: 14px;
+      background: rgba(33, 58, 99, 0.08);
+      color: var(--navy);
       font-size: 13px;
-      text-align:center;
-      padding: 12px;
-      background:
-        radial-gradient(520px 220px at 30% 20%, rgba(255,106,163,.10), transparent 65%),
-        radial-gradient(520px 220px at 75% 55%, rgba(24,182,255,.10), transparent 65%),
-        rgba(255,255,255,.65);
+      font-weight: 800;
     }
 
-    .project .meta{ padding: 14px 14px 14px; }
-    .project .name{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap: 10px;
-      margin-bottom: 6px;
+    .connection-card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.2;
     }
-    .project .name h4{
-      margin:0;
-      font-size: 16px;
-      letter-spacing: .2px;
+
+    .connection-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
     }
-    .project .name h4 .oral-note{
-      color: #c1121f;
-      font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
-      font-weight: 700;
-      font-size: 0.9em;
+
+    .connection-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted-soft);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    #models .cards-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    #benchmarks .cards-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    #workshops .cards-grid,
+    #surveys .cards-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .paper-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 26px;
+      background: rgba(255, 254, 251, 0.92);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .paper-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 44px rgba(17, 24, 39, 0.14);
+      border-color: var(--line-strong);
+    }
+
+    .paper-media {
+      position: relative;
+      min-height: 270px;
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 14% 18%, rgba(213, 157, 61, 0.16), transparent 28%),
+        radial-gradient(circle at 84% 16%, rgba(27, 143, 137, 0.16), transparent 28%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(250, 245, 237, 0.92));
+    }
+
+    .paper-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 238px;
+      object-fit: contain;
+      border-radius: 18px;
+      border: 1px solid rgba(22, 32, 51, 0.08);
+      background: #fff;
+      padding: 8px;
+      box-shadow: 0 14px 32px rgba(17, 24, 39, 0.08);
+    }
+
+    .paper-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 14px;
+      padding: 20px;
+    }
+
+    .paper-card.model-card {
+      display: grid;
+      grid-template-columns: minmax(520px, 1.3fr) minmax(380px, 0.7fr);
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .paper-card.model-card .paper-media {
+      min-height: 100%;
+      border-bottom: 0;
+      border-right: 1px solid var(--line);
+      padding: 18px;
+    }
+
+    .paper-card.model-card .paper-media img {
+      min-height: 100%;
+      height: 100%;
+    }
+
+    .paper-card.model-card .paper-body {
+      padding: 24px 22px;
+      justify-content: center;
+    }
+
+    .paper-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .paper-type,
+    .paper-status,
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .paper-type {
+      background: rgba(33, 58, 99, 0.08);
+      color: var(--navy);
+    }
+
+    .paper-status {
+      background: rgba(213, 157, 61, 0.16);
+      color: #8b5f14;
+    }
+
+    .paper-card h3 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.28;
+    }
+
+    .paper-card h3 span {
+      color: var(--coral);
+      font-size: 0.76em;
+      font-weight: 800;
       white-space: nowrap;
     }
-    .project .pill2{
-      font-size: 11px;
-      color: rgba(15,23,42,.70);
-      background: rgba(255,255,255,.75);
-      border: 1px solid rgba(15,23,42,.10);
-      padding: 6px 10px;
-      border-radius: 999px;
-      white-space:nowrap;
-    }
-    .project p{
-      margin:0;
+
+    .paper-card p {
+      margin: 0;
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-    .project.project-link{
-      display:block;
-      cursor:pointer;
-    }
-    .project.project-link:focus-visible{
-      outline: 2px solid #175cd3;
-      outline-offset: 2px;
+      font-size: 14px;
+      line-height: 1.72;
     }
 
-    @media (max-width: 920px){
-      .hero-main{ grid-template-columns: 1fr; }
-      .hero-figure{ min-height: 240px; }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    @media (max-width: 760px){
-      .grid{ grid-template-columns: 1fr; }
-      .section-head{ align-items:flex-start; flex-direction:column; }
+
+    .tag {
+      background: rgba(27, 143, 137, 0.1);
+      color: var(--teal);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .card-actions a,
+    .card-actions span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .card-actions a {
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .card-actions a.primary-link {
+      background: linear-gradient(135deg, rgba(33, 58, 99, 0.96), rgba(27, 143, 137, 0.92));
+      border-color: transparent;
+      color: #fffdf9;
+      box-shadow: 0 12px 26px rgba(27, 143, 137, 0.18);
+    }
+
+    .card-actions span {
+      background: rgba(22, 32, 51, 0.05);
+      color: var(--muted-soft);
+      border: 1px dashed rgba(22, 32, 51, 0.14);
+    }
+
+    .survey-shell {
+      min-height: 270px;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px dashed rgba(22, 32, 51, 0.18);
+      background:
+        radial-gradient(circle at 24% 20%, rgba(213, 157, 61, 0.18), transparent 34%),
+        radial-gradient(circle at 78% 26%, rgba(27, 143, 137, 0.16), transparent 30%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(250, 244, 236, 0.82));
+    }
+
+    .survey-shell-inner {
+      width: min(100%, 360px);
+      padding: 28px 24px;
+      border-radius: 22px;
+      text-align: center;
+      background: rgba(255, 252, 247, 0.88);
+      border: 1px solid rgba(22, 32, 51, 0.1);
+      box-shadow: 0 18px 40px rgba(17, 24, 39, 0.08);
+    }
+
+    .survey-shell-inner strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .survey-shell-inner p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .footer {
+      margin-top: 26px;
+      padding: 8px 0 0;
+      color: var(--muted);
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .footer-note {
+      padding-top: 24px;
+      border-top: 1px solid rgba(22, 32, 51, 0.08);
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .footer-contact {
+      margin-top: 8px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .footer-contact a {
+      color: var(--navy);
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .connection-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .paper-card.model-card {
+        grid-template-columns: 1fr;
+      }
+
+      .paper-card.model-card .paper-media {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .topbar-inner,
+      .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(var(--maxw), calc(100% - 20px));
+        padding-top: 14px;
+      }
+
+      .topbar {
+        top: 10px;
+      }
+
+      .topbar-inner,
+      .hero,
+      .section-block {
+        border-radius: 24px;
+      }
+
+      .hero,
+      .section-block {
+        padding: 22px;
+      }
+
+      .paper-media {
+        padding: 12px;
+      }
+
+      .brand-copy span {
+        white-space: normal;
+      }
+
+      .hero-titleline {
+        font-size: 16px;
+      }
+
+      .hero-description p {
+        font-size: 15px;
+        line-height: 1.82;
+      }
+
+      .visual-frame img {
+        min-height: 280px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-
-    <!-- HERO -->
-    <header class="hero">
-      <div class="hero-top">
+  <div class="page">
+    <nav class="topbar" aria-label="Main navigation">
+      <div class="topbar-inner">
         <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <h1 style="font-size: 30px;">Any-to-Any Multimodal Learning</h1>
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-copy">
+            <strong>A2A-MI Series</strong>
+            <span>Any-to-Any Multimodal Intelligence</span>
+          </div>
         </div>
-        <div class="badge"><span class="dot" aria-hidden="true"></span> Core index for Models / Benchmarks / Workshops / Surveys</div>
+
+        <div class="nav-links">
+          <a href="#overview">Overview</a>
+          <a href="#models">Models</a>
+          <a href="#benchmarks">Benchmarks</a>
+          <a href="#workshops">Workshops</a>
+          <a href="#surveys">Surveys</a>
+        </div>
+
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="hero-titleline">
+        <span class="hero-acronym">A2A-MI</span>
+        <span class="hero-divider">:</span>
+        <span class="hero-fullname">Any-to-Any Multimodal Intelligence</span>
       </div>
 
-      <div class="hero-main">
+      <div class="hero-grid">
         <div class="hero-copy">
-          <p style="font-size: 14px;">
-            Any-to-Any Multimodal Learning aims to build a unified intelligent system capable of understanding, reasoning, and generating across arbitrary combinations of modalities. Unlike traditional multimodal models, which are typically limited to fixed input-output modes (such as text-to-image, image-to-text, etc.), the Any-to-Any framework emphasizes flexible modeling capabilities in scenarios involving multiple inputs, multiple outputs, and interleaved modalities.
+          <div class="hero-description">
+            <p>
+              <strong>Any-to-Any Multimodal Intelligence</strong> aims to build a
+              <strong>unified intelligent system</strong> capable of
+              <strong>understanding, reasoning, and generating</strong> across
+              <strong>arbitrary combinations of modalities</strong>. Unlike traditional multimodal
+              models, which are typically limited to fixed input-output modes such as text-to-image or
+              image-to-text, the any-to-any framework emphasizes flexible modeling capabilities in
+              scenarios involving <strong>multiple inputs</strong>, <strong>multiple outputs</strong>,
+              and <strong>interleaved modalities</strong>.
+            </p>
 
-            The core challenge of Any-to-Any Multimodal Learning lies in how to design a unified architecture that supports multimodal collaborative modeling, how to align semantics and control information flow in complex interleaved structures, and how to evaluate the model's generalization ability and scalability in real-world open environments. Therefore, this direction not only involves innovations in model architecture but also encompasses the systematic construction of data organization methods, task design paradigms, and evaluation frameworks.
-            
-            This page is a central hub to organize our representative <b>models</b>, <b>benchmarks</b>, <b>workshops</b>, and <b>surveys</b>.
-          </p>
-
-          <div class="pill-row" aria-label="keywords">
-            <div class="pill">Any-input</div>
-            <div class="pill">Any-output</div>
-            <div class="pill">Unified Understanding and Generation</div>
+            <p>
+              The core challenge lies in designing a <strong>unified architecture</strong> that
+              supports multimodal collaborative modeling, in learning how to
+              <strong>align semantics</strong> and <strong>control information flow</strong> in complex
+              interleaved structures, and in evaluating <strong>generalization</strong> and
+              <strong>scalability</strong> in real-world open environments. This direction therefore
+              involves not only innovation in model architecture, but also the systematic construction of
+              <strong>data organization methods</strong>, <strong>task design paradigms</strong>, and
+              <strong>evaluation frameworks</strong>. This page serves as a central hub for our
+              representative <strong>models</strong>, <strong>benchmarks</strong>,
+              <strong>workshops</strong>, and <strong>surveys</strong>.
+            </p>
           </div>
         </div>
 
-        <div class="hero-figure">
-          <div class="figure-head">
-            <div class="mini" aria-hidden="true"><span></span><span></span><span></span></div>
-          </div>
-          <div class="figure-body">
-            <img class="intro-img" src="assets/introduction.png" alt="Any-to-Any Multimodal Learning overview" />
+        <div class="hero-visual">
+          <div class="visual-frame">
+            <img src="assets/introduction.png" alt="Overview figure for Any-to-Any Multimodal Intelligence" />
           </div>
         </div>
       </div>
     </header>
 
-    <!-- SECTION: MODELS -->
-    <section class="section" id="models">
-      <div class="section-head">
-        <div><h3 style="font-size: 20px;">Models</h3></div>
+    <section class="section-block" id="overview">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Overview</div>
+        </div>
       </div>
 
-      <div class="grid">
-        <a class="project project-link" href="https://next-gpt.github.io/" aria-label="NExT-GPT homepage">
-          <div class="thumb">
-            <img src="assets/models/nextgpt.png" alt="Next-GPT architecture" />
-          </div>
-          <div class="meta">
-            <div class="name">
-              <h4>NExT-GPT <span class="oral-note">(ICML 2024 Oral)</span></h4>
-              <span class="pill2">Model</span>
-            </div>
-            <p>An any-to-any multimodal model for unified understanding and generation across text, image, video, and audio. It supports interleaved multimodal instructions, cross-modal reasoning, and controllable multi-signal outputs within one framework.</p>
-          </div>
-        </a>
-
-        <!-- <article class="project">
-          <div class="thumb">
-            <div class="thumb-placeholder">Architecture Figure Placeholder<br/>Model 2</div>
-          </div>
-          <div class="meta">
-            <div class="name">
-              <h4>Model 2</h4>
-              <span class="pill2">Model</span>
-            </div>
-            <p>Short description goes here (you can replace).</p>
-          </div>
+      <div class="connection-grid">
+        <article class="connection-card">
+          <div class="connection-index">01</div>
+          <h3>Flagship models</h3>
+          <p>Core model papers push toward unified any-input any-output architectures and training paradigms.</p>
+          <!-- <ul>
+            <li>General multimodal understanding and generation</li>
+            <li>Interleaved instruction following</li>
+            <li>Cross-modal collaboration in one model</li>
+          </ul> -->
         </article>
-      </div> -->
-        
-    </section>
 
-    <!-- SECTION: BENCHMARKS -->
-    <section class="section" id="benchmarks">
-      <div class="section-head">
-        <div><h3 style="font-size: 20px;">Benchmarks</h3></div>
-      </div>
+        <article class="connection-card">
+          <div class="connection-index">02</div>
+          <h3>Benchmarks</h3>
+          <p>Evaluation work turns the vision into measurable tasks that stress flexible modality composition.</p>
+          <!-- <ul>
+            <li>Unified multimodal testbeds</li>
+            <li>Complex reasoning and generation settings</li>
+            <li>Scalable, realistic any-to-any evaluation</li>
+          </ul> -->
+        </article>
 
-      <div class="grid">
-        
-       <a class="project project-link" href="https://any2any-mllm.github.io/unim" aria-label="UniM homepage">
-          <div class="thumb">
-            <img src="assets/benchmarks/unim.png" alt="UniM intro" />
-          </div>
-          <div class="meta">
-            <div class="name">
-              <h4>UniM <span class="oral-note">(CVPR 2026)</span></h4>
-              <span class="pill2">Benchmark</span>
-            </div>
-            <p>The first unified any-to-any interleaved multimodal benchmark, UniM contains 31K high-quality instances across 30 domains and 7 representative modalities: text, image, audio, video, document, code, and 3D, each requiring multiple intertwined reasoning and generation capabilities.</p>
-          </div>
-        </a>
+        <article class="connection-card">
+          <div class="connection-index">03</div>
+          <h3>Workshops</h3>
+          <p>Workshops create a public venue for the field, clarifying open problems and bringing together adjacent communities.</p>
+          <!-- <ul>
+            <li>Shared terminology and scope</li>
+            <li>Cross-community discussion</li>
+            <li>Visible research momentum</li>
+          </ul> -->
+        </article>
 
+        <article class="connection-card">
+          <div class="connection-index">04</div>
+          <h3>Survey papers</h3>
+          <p>Survey work will consolidate technical progress, taxonomy, and unresolved challenges across this direction.</p>
+          <!-- <ul>
+            <li>Landscape of methods and tasks</li>
+            <li>Open challenges in architecture and evaluation</li>
+            <li>Guidance for future research</li>
+          </ul> -->
+        </article>
       </div>
     </section>
 
-    <!-- SECTION: WORKSHOPS -->
-    <section class="section" id="workshops">
-      <div class="section-head">
-        <div><h3 style="font-size: 20px;">Workshops</h3></div>
+    <section class="section-block" id="models">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Models</div>
+          <!-- <h2 class="section-title">Representative model work</h2> -->
+        </div>
+        <!-- <div class="section-deck">
+          These papers form the technical backbone of the thread. They focus on unified multimodal
+          architectures that can both understand and generate across text, image, audio, and video
+          within a single any-to-any framework.
+        </div> -->
       </div>
 
-      <div class="grid">
-       <a class="project project-link" href="https://any2any-mllm.github.io/workshop-cvpr26/" aria-label="A2A MML Workshop homepage">
-          <div class="thumb">
-            <img src="assets/workshops/a2amml.png" alt="a2a intro" />
+      <div class="cards-grid">
+        <article class="paper-card model-card">
+          <div class="paper-media">
+            <img src="assets/models/nextgpt.png" alt="Architecture figure for NExT-GPT" />
           </div>
-          <div class="meta">
-            <div class="name">
-              <h4>A2A MML <span class="oral-note">(CVPR 2026 Workshop)</span></h4>
-              <span class="pill2">Workshop</span>
+          <div class="paper-body">
+            <div class="paper-topline">
+              <span class="paper-type">Any2Any MLLM</span>
+              <span class="paper-status">ICML 2024 Oral</span>
             </div>
-            <p>The recent surge of multimodal large models has brought unprecedented progress in connecting language, vision, audio, and beyond. Yet, despite their impressive performance, most existing systems remain constrained to fixed modality pairs, lacking the flexibility to generalize or reason across arbitrary modality combinations. The first edition of the Any-to-Any Multimodal Learning (A2A-MML) workshop aims to explore the next frontier of multimodal intelligence—developing systems capable of understanding, aligning, transforming, and generating across any set of modalities. </p>
+            <h3>NExT-GPT <span>Any-to-any multimodal model</span></h3>
+            <p>
+              NExT-GPT advances a unified framework for multimodal understanding and generation across
+              text, image, video, and audio. It supports interleaved multimodal prompting, cross-modal
+              reasoning, and controllable output generation inside one coherent model design.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Unified architecture</span>
+              <span class="tag">Interleaved prompting</span>
+              <span class="tag">Cross-modal generation</span>
+            </div>
+            <div class="card-actions">
+              <a class="primary-link" href="https://next-gpt.github.io/" target="_blank" rel="noreferrer">Project</a>
+              <a href="https://arxiv.org/pdf/2309.05519.pdf" target="_blank" rel="noreferrer">Paper</a>
+              <a href="https://github.com/NExT-GPT/NExT-GPT" target="_blank" rel="noreferrer">Codes</a>
+            </div>
           </div>
-        </a>
-
-        
+        </article>
       </div>
     </section>
 
-    <!-- SECTION: SURVEYS -->
-    <!-- <section class="section" id="surveys">
-      <div class="section-head">
-        <div><h3 style="font-size: 20px;">Surveys</h3></div>
+    <section class="section-block" id="benchmarks">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Benchmarks</div>
+        </div>
       </div>
 
-      <div class="grid">
-        <article class="project">
-          <div class="thumb">
-            <div class="thumb-placeholder">Survey Figure Placeholder<br/>Survey 1</div>
+      <div class="cards-grid">
+        <article class="paper-card model-card">
+          <div class="paper-media">
+            <img src="assets/benchmarks/unim.png" alt="Overview figure for UniM benchmark" />
           </div>
-          <div class="meta">
-            <div class="name">
-              <h4>Survey 1</h4>
-              <span class="pill2">Survey</span>
+          <div class="paper-body">
+            <div class="paper-topline">
+              <span class="paper-type">Benchmark</span>
+              <span class="paper-status">CVPR 2026</span>
             </div>
-            <p>Short description goes here (you can replace).</p>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="thumb">
-            <div class="thumb-placeholder">Survey Figure Placeholder<br/>Survey 2</div>
-          </div>
-          <div class="meta">
-            <div class="name">
-              <h4>Survey 2</h4>
-              <span class="pill2">Survey</span>
+            <h3>UniM 
+              <span>Unified any-to-any interleaved</span>
+              <span>multimodal benchmark</span>
+            </h3>
+            <p>
+              UniM is designed as a unified benchmark for any-to-any interleaved multimodal intelligence,
+              with 31K high-quality instances spanning 30 domains and 7 representative modalities:
+              text, image, audio, video, document, code, and 3D. It targets intertwined reasoning and
+              generation demands that go beyond conventional multimodal evaluation.
+            </p>
+            <div class="tag-row">
+              <span class="tag">31K instances</span>
+              <span class="tag">7 modalities</span>
+              <span class="tag">Interleaved evaluation</span>
             </div>
-            <p>Short description goes here (you can replace).</p>
+            <div class="card-actions">
+              <a class="primary-link" href="https://any2any-mllm.github.io/unim" target="_blank" rel="noreferrer">Project</a>
+              <a href="https://arxiv.org/abs/2603.05075" target="_blank" rel="noreferrer">Paper</a>
+              <a href="https://github.com/liyanlin06/" target="_blank" rel="noreferrer">Codes</a>
+            </div>
           </div>
         </article>
       </div>
-    </section> -->
+    </section>
 
+    <section class="section-block" id="workshops">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Workshops</div>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <article class="paper-card model-card">
+          <div class="paper-media">
+            <img src="assets/workshops/a2amml.png" alt="Poster-like visual for the A2A-MI workshop" />
+          </div>
+          <div class="paper-body">
+            <div class="paper-topline">
+              <span class="paper-type">Workshop</span>
+              <span class="paper-status">CVPR 2026 Workshop</span>
+            </div>
+            <h3>A2A-MI <span>The first workshop for this series</span></h3>
+            <p>
+              The Any-to-Any Multimodal Intelligence workshop centers on the next stage of multimodal
+              intelligence: systems that can understand, align, transform, and generate across arbitrary
+              modality sets. It provides a focal point for discussing architecture, training, data,
+              evaluation, and real-world deployment challenges.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Community building</span>
+              <span class="tag">Open problems</span>
+              <span class="tag">Field shaping</span>
+            </div>
+            <div class="card-actions">
+              <a class="primary-link" href="https://any2any-mllm.github.io/workshop-cvpr26/" target="_blank" rel="noreferrer">Workshop site</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block" id="surveys">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Surveys</div>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <article class="paper-card model-card">
+          <div class="paper-media">
+            <div class="survey-shell">
+              <div class="survey-shell-inner">
+                <span class="paper-status">In preparation</span>
+                <strong>A2A-MI Survey</strong>
+                <p>
+                  A forthcoming synthesis of methods, benchmarks, workshop themes, and unresolved
+                  questions across the A2A-MI landscape.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="paper-body">
+            <div class="paper-topline">
+              <span class="paper-type">Survey paper</span>
+              <span class="paper-status">Coming soon</span>
+            </div>
+            <h3>Systematic landscape review <span>Taxonomy, methods, and open challenges</span></h3>
+            <p>
+              This module is reserved for the survey paper that will unify the thread from a higher
+              level: what counts as any-to-any multimodal intelligence, how existing approaches differ,
+              which evaluation settings are still missing, and where the most important opportunities lie.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Taxonomy</span>
+              <span class="tag">Method landscape</span>
+              <span class="tag">Open problems</span>
+            </div>
+            <div class="card-actions">
+              <span>Link will be added when available</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-note">
+        © Copyright 2026 Any-to-Any Multimodal Intelligence (A2A-MI). All rights reserved.
+      </div>
+      <div class="footer-contact">
+        Contact:
+        <a href="https://haofei.vip/" target="_blank" rel="noreferrer">Hao Fei</a>
+        (<a href="mailto:haofei7419@gmail.com">haofei7419@gmail.com</a>);
+        <a href="https://sqwu.top/" target="_blank" rel="noreferrer">Shengqiong Wu</a>
+        (<a href="mailto:shengqiongwu@gmail.com">shengqiongwu@gmail.com</a>).
+      </div>
+    </footer>
   </div>
 </body>
 </html>
